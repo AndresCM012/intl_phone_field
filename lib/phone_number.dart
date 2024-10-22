@@ -43,11 +43,11 @@ class PhoneNumber {
   bool isValidNumber() {
     Country country = getCountry(completeNumber);
     final unmaskedNumber = number.replaceAll(' ', '');
-    if (unmaskedNumber < country.minLength) {
+    if (unmaskedNumber.length < country.minLength) {
       throw NumberTooShortException();
     }
 
-    if (unmaskedNumber > country.maxLength) {
+    if (unmaskedNumber.length > country.maxLength) {
       throw NumberTooLongException();
     }
     return true;
