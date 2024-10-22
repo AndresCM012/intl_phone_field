@@ -39,14 +39,15 @@ class PhoneNumber {
       return PhoneNumber(countryISOCode: "", countryCode: "", number: "");
     }
   }
-
+  
   bool isValidNumber() {
     Country country = getCountry(completeNumber);
-    if (number.length < country.minLength) {
+    final unmaskedNumber = number.replaceAll(' ', '');
+    if (unmaskedNumber < country.minLength) {
       throw NumberTooShortException();
     }
 
-    if (number.length > country.maxLength) {
+    if (unmaskedNumber > country.maxLength) {
       throw NumberTooLongException();
     }
     return true;
